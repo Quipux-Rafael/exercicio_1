@@ -9,7 +9,7 @@ app = FastAPI()
 
 @app.get("/lista-ordenada/")
 def lista_ordenada(lista_no_ordenada):
-    lista_no_ordenada = lista = ast.literal_eval(lista_no_ordenada)
+    lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
     lista_ordenada = sorted(lista_no_ordenada)
     hora_atual = datetime.now().strftime("%d/%m/%Y %H:%m:%S")
 
