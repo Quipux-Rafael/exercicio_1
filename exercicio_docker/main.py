@@ -11,7 +11,7 @@ app = FastAPI()
 def lista_ordenada(lista_no_ordenada):
     lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
     lista_ordenada = sorted(lista_no_ordenada)
-    hora_atual = datetime.now().strftime("%d/%m/%Y %H:%m:%S")
+    hora_atual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     return {
         "hora_sistema": hora_atual,
