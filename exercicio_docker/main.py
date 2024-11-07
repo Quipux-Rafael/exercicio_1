@@ -1,6 +1,6 @@
 import ast
 from datetime import datetime
-
+import uuid
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -56,3 +56,20 @@ def healthcheck():
             "Ok"
         """
     return "Ok"
+
+@app.get("guardar-lista-no-ordenada")
+def guarda_lista_no_ordenada(lista_no_ordenada):
+    try:
+        lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
+    except:
+        raise ValueError
+
+    hora_atual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    unique_id = str(uuid.uuid4())
+
+    return {
+        "unique_id": unique_id,
+        "unique_id type": type(unique_id),
+        "lista_no_ordenada": lista_no_ordenada,
+            }
