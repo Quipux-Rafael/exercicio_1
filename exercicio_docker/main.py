@@ -64,7 +64,7 @@ def healthcheck():
         """
     return "Ok"
 
-@app.get("guardar-lista-no-ordenada")
+@app.get("/guardar-lista-no-ordenada")
 def guarda_lista_no_ordenada(lista_no_ordenada):
     try:
         lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
