@@ -75,14 +75,13 @@ def guarda_lista_no_ordenada(lista_no_ordenada):
 
     unique_id = str(uuid.uuid4())
 
-    collection.insert_one({
-        "id": unique_id,
-        "hora_sistema": hora_atual,
-        "lista_no_ordenada": lista_no_ordenada
-    })
+    try:
+        collection.insert_one({
+            "id": unique_id,
+            "hora_sistema": hora_atual,
+            "lista_no_ordenada": lista_no_ordenada
+        })
+        return {"msg": f"La lista no ordenada fue guardada con el id: {unique_id}"}
+    except:
+        raise ValueError
 
-    return {
-        "unique_id": unique_id,
-        "unique_id type": type(unique_id),
-        "lista_no_ordenada": lista_no_ordenada,
-            }
