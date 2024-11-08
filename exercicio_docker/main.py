@@ -1,10 +1,17 @@
 import ast
+import os
 from datetime import datetime
 import uuid
 from fastapi import FastAPI
+from pymongo import MongoClient
 
 app = FastAPI()
 
+mongodb_host = os.getenv("MONGODB_HOST", "localhost")
+mongodb_port = int(os.getenv("MONGODB_PORT", 27017))
+client = MongoClient(f"mongodb://{mongodb_host}:{mongodb_port}")
+db = client.python_app
+collection = db.listas_no_ordenadas
 
 @app.get("/lista-ordenada/")
 def lista_ordenada(lista_no_ordenada):
@@ -67,6 +74,12 @@ def guarda_lista_no_ordenada(lista_no_ordenada):
     hora_atual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     unique_id = str(uuid.uuid4())
+
+    collection.insert_one({
+        "id": unique_id,
+        "hora_sistema": hora_atual,
+        "lista_no_ordenada": lista_no_ordenada
+    })
 
     return {
         "unique_id": unique_id,
