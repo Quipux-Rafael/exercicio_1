@@ -69,7 +69,7 @@ def guarda_lista_no_ordenada(lista_no_ordenada):
     try:
         lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
     except:
-        raise ValueError
+        raise  ValueError(f"Erro na lista")
 
     hora_atual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
@@ -81,7 +81,7 @@ def guarda_lista_no_ordenada(lista_no_ordenada):
             "hora_sistema": hora_atual,
             "lista_no_ordenada": lista_no_ordenada
         })
-        return {"msg": f"La lista no ordenada fue guardada con el id: {unique_id}"}
+        return {"msg": f"Erro ao guardar no mongoDB"}
     except:
         raise ValueError
 
