@@ -69,7 +69,9 @@ def guarda_lista_no_ordenada(lista_no_ordenada):
     try:
         lista_no_ordenada = ast.literal_eval(lista_no_ordenada)
     except:
-        raise  ValueError(f"Erro na lista")
+        raise ValueError(f"Erro na lista")
+
+    print(lista_no_ordenada)
 
     hora_atual = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
